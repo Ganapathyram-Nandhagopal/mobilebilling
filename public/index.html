@@ -66,8 +66,6 @@
             </div>
             <ul class="sidebar-menu">
                 <li><a href="#" data-page="dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#" data-page="balance"><i class="fas fa-balance-scale"></i> Daily Balance</a></li>
-                <li><a href="#" data-page="products"><i class="fas fa-box"></i> Products</a></li>
                 <li><a href="#" data-page="create-bill"><i class="fas fa-plus"></i> Create Bill</a></li>
                 <li><a href="#" data-page="bills"><i class="fas fa-file-invoice"></i> Bills</a></li>
                 <li><a href="#" data-page="users"><i class="fas fa-users"></i> Users</a></li>
@@ -158,14 +156,9 @@
                         <div class="items-section">
                             <div class="section-header">
                                 <h3>Items</h3>
-                                <div class="item-actions">
-                                    <button type="button" id="add-from-products-btn" class="btn btn-secondary">
-                                        <i class="fas fa-search"></i> Select from Products
-                                    </button>
-                                    <button type="button" id="add-item-btn" class="btn btn-secondary">
-                                        <i class="fas fa-plus"></i> Add Custom Item
-                                    </button>
-                                </div>
+                                <button type="button" id="add-item-btn" class="btn btn-secondary">
+                                    <i class="fas fa-plus"></i> Add Item
+                                </button>
                             </div>
                             <div id="items-container" class="items-container">
                                 <!-- Items will be added here -->
@@ -237,85 +230,6 @@
                 </div>
                 <div id="users-list" class="users-list">
                     <!-- Users will be populated here -->
-                </div>
-            </div>
-
-            <!-- Products Page -->
-            <div id="products-page" class="content-page">
-                <div class="page-header">
-                    <h2>Product Management</h2>
-                    <button id="add-product-btn" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Add Product
-                    </button>
-                </div>
-                <div class="products-grid">
-                    <div class="search-filter-section">
-                        <input type="text" id="product-search" placeholder="Search products..." class="search-input">
-                        <select id="category-filter" class="filter-select">
-                            <option value="all">All Categories</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="clothing">Clothing</option>
-                            <option value="food">Food & Beverages</option>
-                            <option value="books">Books</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div id="products-list" class="products-list">
-                        <!-- Products will be populated here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Balance Page -->
-            <div id="balance-page" class="content-page">
-                <div class="page-header">
-                    <h2>Daily Balance</h2>
-                    <div class="balance-actions">
-                        <button id="set-opening-balance-btn" class="btn btn-primary">Set Opening Balance</button>
-                        <button id="close-day-btn" class="btn btn-secondary">Close Day</button>
-                    </div>
-                </div>
-                
-                <div class="balance-overview">
-                    <div class="balance-card opening">
-                        <div class="balance-icon">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                        <div class="balance-info">
-                            <h3 id="opening-balance">$0.00</h3>
-                            <p>Opening Balance</p>
-                            <small id="opening-date">Today</small>
-                        </div>
-                    </div>
-                    
-                    <div class="balance-card sales">
-                        <div class="balance-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="balance-info">
-                            <h3 id="today-sales">$0.00</h3>
-                            <p>Today's Sales</p>
-                            <small id="sales-count">0 transactions</small>
-                        </div>
-                    </div>
-                    
-                    <div class="balance-card closing">
-                        <div class="balance-icon">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <div class="balance-info">
-                            <h3 id="closing-balance">$0.00</h3>
-                            <p>Expected Closing</p>
-                            <small id="closing-status">Open</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="balance-history">
-                    <h3>Balance History</h3>
-                    <div id="balance-history-list" class="balance-history-list">
-                        <!-- Balance history will be populated here -->
-                    </div>
                 </div>
             </div>
 
@@ -395,210 +309,31 @@
                 <button class="modal-close">&times;</button>
             </div>
             <form id="user-form" class="modal-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="user-name">Full Name</label>
-                        <input type="text" id="user-name" name="userName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-email">Email</label>
-                        <input type="email" id="user-email" name="userEmail" required>
-                    </div>
+                <div class="form-group">
+                    <label for="user-name">Name</label>
+                    <input type="text" id="user-name" name="userName" required>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="user-username">Username</label>
-                        <input type="text" id="user-username" name="userUsername" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-password">Password</label>
-                        <input type="password" id="user-password" name="userPassword" required>
-                    </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" name="userEmail" required>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="user-role">Role</label>
-                        <select id="user-role" name="userRole" required>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                            <option value="manager">Manager</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="user-status">Status</label>
-                        <select id="user-status" name="userStatus" required>
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="user-role">Role</label>
+                    <select id="user-role" name="userRole" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
-                
-                <div class="permissions-section">
-                    <h4>Permissions</h4>
-                    <div class="permissions-grid">
-                        <label class="permission-item">
-                            <input type="checkbox" name="canCreateBills" id="perm-create-bills">
-                            <span>Create Bills</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canViewBills" id="perm-view-bills">
-                            <span>View Bills</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canDeleteBills" id="perm-delete-bills">
-                            <span>Delete Bills</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canManageProducts" id="perm-manage-products">
-                            <span>Manage Products</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canManageUsers" id="perm-manage-users">
-                            <span>Manage Users</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canViewReports" id="perm-view-reports">
-                            <span>View Reports</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canManageBalance" id="perm-manage-balance">
-                            <span>Manage Balance</span>
-                        </label>
-                        <label class="permission-item">
-                            <input type="checkbox" name="canAccessSettings" id="perm-access-settings">
-                            <span>Access Settings</span>
-                        </label>
-                    </div>
+                <div class="form-group">
+                    <label for="user-status">Status</label>
+                    <select id="user-status" name="userStatus" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
                 </div>
-                
                 <div class="modal-actions">
                     <button type="button" class="btn btn-secondary modal-close">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save User</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Product Modal -->
-    <div id="product-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="product-modal-title">Add Product</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <form id="product-form" class="modal-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="product-name">Product Name</label>
-                        <input type="text" id="product-name" name="productName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-code">Product Code</label>
-                        <input type="text" id="product-code" name="productCode" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="product-category">Category</label>
-                        <select id="product-category" name="productCategory" required>
-                            <option value="electronics">Electronics</option>
-                            <option value="clothing">Clothing</option>
-                            <option value="food">Food & Beverages</option>
-                            <option value="books">Books</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-unit">Unit</label>
-                        <select id="product-unit" name="productUnit" required>
-                            <option value="pcs">Pieces</option>
-                            <option value="kg">Kilogram</option>
-                            <option value="ltr">Liter</option>
-                            <option value="box">Box</option>
-                            <option value="pack">Pack</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="product-retail-price">Retail Price</label>
-                        <input type="number" id="product-retail-price" name="productRetailPrice" min="0" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-wholesale-price">Wholesale Price</label>
-                        <input type="number" id="product-wholesale-price" name="productWholesalePrice" min="0" step="0.01" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="product-stock">Stock Quantity</label>
-                        <input type="number" id="product-stock" name="productStock" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-min-stock">Minimum Stock Alert</label>
-                        <input type="number" id="product-min-stock" name="productMinStock" min="0" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="product-description">Description</label>
-                    <textarea id="product-description" name="productDescription" rows="3"></textarea>
-                </div>
-                
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Product</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Product Selection Modal -->
-    <div id="product-selection-modal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>Select Products</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="product-selection-content">
-                <div class="selection-search">
-                    <input type="text" id="selection-search" placeholder="Search products..." class="search-input">
-                </div>
-                <div id="product-selection-list" class="product-selection-list">
-                    <!-- Product selection items will be populated here -->
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button type="button" class="btn btn-secondary modal-close">Cancel</button>
-                <button type="button" id="add-selected-products" class="btn btn-primary">Add Selected</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Balance Modal -->
-    <div id="balance-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="balance-modal-title">Set Opening Balance</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <form id="balance-form" class="modal-form">
-                <div class="form-group">
-                    <label for="balance-amount">Amount</label>
-                    <input type="number" id="balance-amount" name="balanceAmount" min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="balance-notes">Notes</label>
-                    <textarea id="balance-notes" name="balanceNotes" rows="3" placeholder="Optional notes about this balance entry"></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Balance</button>
                 </div>
             </form>
         </div>
