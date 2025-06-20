@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Billing App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <i class="fas fa-receipt"></i>
+                    <h1>Mobile Billing</h1>
+                    <p>Professional Billing Solution</p>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div class="login-demo">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <p>Username: admin</p>
+                    <p>Password: admin123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="page">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <button id="menu-toggle" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="page-title">Dashboard</h1>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-receipt"></i>
+                <span>Mobile Billing</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" data-page="dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#" data-page="create-bill"><i class="fas fa-plus"></i> Create Bill</a></li>
+                <li><a href="#" data-page="bills"><i class="fas fa-file-invoice"></i> Bills</a></li>
+                <li><a href="#" data-page="users"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="#" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="content-page active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-revenue">$0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-bills">0</h3>
+                            <p>Total Bills</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="retail-bills">0</h3>
+                            <p>Retail Bills</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="wholesale-bills">0</h3>
+                            <p>Wholesale Bills</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-bills">
+                    <h2>Recent Bills</h2>
+                    <div id="recent-bills-list" class="bills-list">
+                        <!-- Recent bills will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Bill Page -->
+            <div id="create-bill-page" class="content-page">
+                <div class="bill-form-container">
+                    <form id="bill-form" class="bill-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bill-type">Bill Type</label>
+                                <select id="bill-type" name="billType" required>
+                                    <option value="retail">Retail</option>
+                                    <option value="wholesale">Wholesale</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-name">Customer Name</label>
+                                <input type="text" id="customer-name" name="customerName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customer-phone">Phone</label>
+                                <input type="tel" id="customer-phone" name="customerPhone">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email">Email</label>
+                                <input type="email" id="customer-email" name="customerEmail">
+                            </div>
+                        </div>
+
+                        <div class="items-section">
+                            <div class="section-header">
+                                <h3>Items</h3>
+                                <button type="button" id="add-item-btn" class="btn btn-secondary">
+                                    <i class="fas fa-plus"></i> Add Item
+                                </button>
+                            </div>
+                            <div id="items-container" class="items-container">
+                                <!-- Items will be added here -->
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="discount">Discount (%)</label>
+                                <input type="number" id="discount" name="discount" min="0" max="100" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="tax">Tax (%)</label>
+                                <input type="number" id="tax" name="tax" min="0" max="100" value="10">
+                            </div>
+                        </div>
+
+                        <div class="bill-summary">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Discount:</span>
+                                <span id="discount-amount">$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax:</span>
+                                <span id="tax-amount">$0.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="total-amount">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" id="preview-bill-btn" class="btn btn-secondary">Preview</button>
+                            <button type="submit" class="btn btn-primary">Save Bill</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bills Page -->
+            <div id="bills-page" class="content-page">
+                <div class="page-header">
+                    <h2>All Bills</h2>
+                    <div class="filters">
+                        <select id="bill-filter" class="filter-select">
+                            <option value="all">All Bills</option>
+                            <option value="retail">Retail</option>
+                            <option value="wholesale">Wholesale</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="all-bills-list" class="bills-list">
+                    <!-- All bills will be populated here -->
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div id="users-page" class="content-page">
+                <div class="page-header">
+                    <h2>User Management</h2>
+                    <button id="add-user-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add User
+                    </button>
+                </div>
+                <div id="users-list" class="users-list">
+                    <!-- Users will be populated here -->
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="content-page">
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>Company Information</h3>
+                        <form id="company-form" class="settings-form">
+                            <div class="form-group">
+                                <label for="company-name">Company Name</label>
+                                <input type="text" id="company-name" name="companyName" value="Your Company Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="company-address">Address</label>
+                                <textarea id="company-address" name="companyAddress" rows="3">123 Business Street, City, State 12345</textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="company-phone">Phone</label>
+                                    <input type="tel" id="company-phone" name="companyPhone" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="company-email">Email</label>
+                                    <input type="email" id="company-email" name="companyEmail" value="info@company.com">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Bill Limits</h3>
+                        <form id="limits-form" class="settings-form">
+                            <div class="form-group">
+                                <label for="max-bills">Maximum Bills per Day</label>
+                                <input type="number" id="max-bills" name="maxBills" min="1" value="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="current-bills">Bills Created Today</label>
+                                <input type="number" id="current-bills" name="currentBills" readonly>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button id="save-settings-btn" class="btn btn-primary">Save Settings</button>
+                        <button id="reset-data-btn" class="btn btn-danger">Reset All Data</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Invoice Preview Modal -->
+    <div id="invoice-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Invoice Preview</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="invoice-content" class="invoice-content">
+                <!-- Invoice content will be generated here -->
+            </div>
+            <div class="modal-actions">
+                <button id="print-invoice-btn" class="btn btn-secondary">Print</button>
+                <button id="download-invoice-btn" class="btn btn-primary">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div id="user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="user-modal-title">Add User</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="user-form" class="modal-form">
+                <div class="form-group">
+                    <label for="user-name">Name</label>
+                    <input type="text" id="user-name" name="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" name="userEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-role">Role</label>
+                    <select id="user-role" name="userRole" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user-status">Status</label>
+                    <select id="user-status" name="userStatus" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
